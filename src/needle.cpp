@@ -1,19 +1,34 @@
 
-#include "baseline/base.h"
-#include "utils/fasta_read.h"
 #include <stdlib.h>
-// You'll have to declare the constant string size as it'll cause a segfault if you malloc at runtime
-char sequence1[25000000], sequence2[25000000];
-int main(int argc, char* argv[]) {
-	if (argc != 6) {
-		printf("Usage: ./needle file1 file2 match_score mismatch_score gap_score");
-		return 0;
+#include <bits/stdc++.h>
+
+#define d(i, j) ((i) * (m + 1) + (j))
+int dp[(int)1e8] = {0};
+
+int needle(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
+	for (int i = 1; i <= n; i++) {
+		dp[d(i, 0)] = dp[d(i - 1, 0)] + gap;
 	}
-	int n = readFASTA(sequence1, argv[1]);
-	int m = readFASTA(sequence2, argv[2]);
-	int match = atoi(argv[3]);	
-	int mismatch = atoi(argv[4]);	
-	int gap = atoi(argv[5]);	
-	long int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
-	printf("%ld", ans);
+	for (int i = 1; i <= m; i++) {
+		dp[d(0, i)] = dp[d(0, i - 1)] + gap;
+	}
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			if (i == 0) {
+				dp[d(i, j)] = dp[d(i, j - 1)] + gap;
+				continue;
+			}
+			if (j == 0) {
+				dp[d(i, j)] = dp[d(i - 1, j)] + gap;
+				continue;
+			}
+			int s = seq1[i - 1] == seq2[j - 1] ? match : mismatch;
+			dp[d(i, j)] = dp[d(i - 1, j - 1)] + s;
+			if (std::max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap > dp[d(i, j)]) {
+				dp[d(i, j)] = std::max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap;
+			}
+			dp[d(i, j)] = std::max(dp[d(i, j)], 0);
+		}
+	}
+	return dp[d(n, m)];
 }

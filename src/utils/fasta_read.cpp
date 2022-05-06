@@ -1,7 +1,9 @@
-#include "fasta_read.h"
-long int readFASTA(char* sequence, char* fileName) {
+#include <fasta_read.h>
+#include <bits/stdc++.h>
 
-	FILE* fp = fopen(fileName, "r");
+int readFASTA(char *sequence, std::string fileName) {
+
+	FILE* fp = fopen(fileName.c_str(), "r");
 	// Clear first line 
 	fscanf(fp, "%*[^\n]s\n");
 

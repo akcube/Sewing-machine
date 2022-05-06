@@ -1,18 +1,19 @@
 #include <benchmark/benchmark.h>
+#include <fasta_read.h>
+#include <needle.h>
 
-static void BM_StringCreation(benchmark::State& state) {
-  for (auto _ : state)
-    std::string empty_string;
-}
-// Register the function as a benchmark
-BENCHMARK(BM_StringCreation);
+char sequence1[25000000], sequence2[25000000];
 
 // Define another benchmark
-static void BM_StringCopy(benchmark::State& state) {
-  std::string x = "hello";
-  for (auto _ : state)
-    std::string copy(x);
+static void needle_bench(benchmark::State& state) {
+  std::string f1 = "../../../data/small/test_1/1.fasta", f2 = "../../../data/small/test_1/2.fasta";
+  int match = 1, mismatch = -2, gap = 1;
+  for (auto _ : state){
+    int n = readFASTA(sequence1, f1);
+    int m = readFASTA(sequence2, f2);
+    long int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
+  }
 }
-BENCHMARK(BM_StringCopy);
+BENCHMARK(needle_bench);
 
 BENCHMARK_MAIN();
