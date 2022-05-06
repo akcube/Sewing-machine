@@ -1,34 +1,26 @@
-
-#include <stdlib.h>
 #include <bits/stdc++.h>
 
-#define d(i, j) ((i) * (m + 1) + (j))
-int dp[(int)1e8] = {0};
+using namespace std;
 
-int needle(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
+#define d(i, j) ((i) * (m + 1) + (j))
+int previous[(int)(2.5e7)] = {0};
+int curr[(int)(2.5e7)] = {0};
+
+int needle_1d(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
 	for (int i = 1; i <= n; i++) {
-		dp[d(i, 0)] = dp[d(i - 1, 0)] + gap;
+		previous[i] = previous[i - 1] + gap;
 	}
-	for (int i = 1; i <= m; i++) {
-		dp[d(0, i)] = dp[d(0, i - 1)] + gap;
-	}
+	int* p = previous;
+	int* c = curr;
 	for (int i = 1; i <= n; i++) {
+		c[0] = p[0] + gap;
 		for (int j = 1; j <= m; j++) {
-			if (i == 0) {
-				dp[d(i, j)] = dp[d(i, j - 1)] + gap;
-				continue;
-			}
-			if (j == 0) {
-				dp[d(i, j)] = dp[d(i - 1, j)] + gap;
-				continue;
-			}
 			int s = seq1[i - 1] == seq2[j - 1] ? match : mismatch;
-			dp[d(i, j)] = dp[d(i - 1, j - 1)] + s;
-			if (std::max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap > dp[d(i, j)]) {
-				dp[d(i, j)] = std::max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap;
-			}
-			dp[d(i, j)] = std::max(dp[d(i, j)], 0);
+			c[j] = max(p[j - 1] + s, max(p[j], c[j - 1]) + gap);		
 		}
+		swap(p, c);
 	}
-	return dp[d(n, m)];
+	return p[m]; 
 }
+
+
