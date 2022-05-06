@@ -3,10 +3,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/benchmarks)
 
 # Create an interface library containing an interface to all required libs 
 add_library(allbenchlib INTERFACE)
-target_link_libraries(allbenchlib INTERFACE gomp sewingmachine util_lib)
+target_link_libraries(allbenchlib INTERFACE gomp sewingmachine util_lib benchmark::benchmark)
 
 set(BENCH_EXECUTABLES 
-	bench1.cpp)
+	bench1)
 
 # Create the targets
 foreach(exec ${BENCH_EXECUTABLES})
