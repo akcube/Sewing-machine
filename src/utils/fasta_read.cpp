@@ -1,4 +1,4 @@
-#include <fasta_read.h>
+#include <utils.h>
 #include <bits/stdc++.h>
 
 int readFASTA(char *sequence, std::string fileName) {
@@ -15,4 +15,8 @@ int readFASTA(char *sequence, std::string fileName) {
 
 	sequence[index] = '\0';
 	return index;
+}
+
+void* page_alloc(size_t mem_sz){
+	return mmap(NULL, mem_sz, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 }

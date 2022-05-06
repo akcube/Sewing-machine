@@ -1,12 +1,12 @@
 #include <benchmark/benchmark.h>
-#include <fasta_read.h>
+#include <utils.h>
 #include <needle.h>
 
 char sequence1[25000000], sequence2[25000000];
 
 // Define another benchmark
 static void needle_bench(benchmark::State& state) {
-  std::string f1 = "../../../data/small/test_1/1.fasta", f2 = "../../../data/small/test_1/2.fasta";
+  std::string f1 = "../../../data/medium/1.fasta", f2 = "../../../data/medium/2.fasta";
   int match = 1, mismatch = -2, gap = 1;
   for (auto _ : state){
     int n = readFASTA(sequence1, f1);

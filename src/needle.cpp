@@ -6,7 +6,7 @@ using namespace std;
 int previous[(int)(2.5e7)] = {0};
 int curr[(int)(2.5e7)] = {0};
 
-int needle_1d(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
+int needle(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
 	for (int i = 1; i <= n; i++) {
 		previous[i] = previous[i - 1] + gap;
 	}
@@ -22,5 +22,6 @@ int needle_1d(char* seq1, int n, char* seq2, int m, int match, int mismatch, int
 	}
 	return p[m]; 
 }
+
 
 
