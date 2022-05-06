@@ -1,5 +1,5 @@
-#include <fasta_read.h>
-void readFASTA(char* sequence, char* fileName) {
+#include "fasta_read.h"
+long int readFASTA(char* sequence, char* fileName) {
 
 	FILE* fp = fopen(fileName, "r");
 	// Clear first line 
@@ -12,4 +12,5 @@ void readFASTA(char* sequence, char* fileName) {
 		if (c != '\n') sequence[index++] = c;
 
 	sequence[index] = '\0';
+	return index;
 }
