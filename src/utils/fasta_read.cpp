@@ -5,17 +5,14 @@
 #include <fcntl.h>
 
 void* readFASTA(std::string fileName, int &n){
-
 	int fd = open(fileName.c_str(), O_RDONLY);
 	struct stat filestat;
 	if(fstat(fd, &filestat) !=0) {
 		perror("stat failed");
 		exit(1);
 	}
-
 	char *file = (char*) mmap(NULL, filestat.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
 	close(fd);
-
 	for(int i=0; i<filestat.st_size; i++) if(file[i] == '\n') {
 		file = &file[i+1];
 		n = filestat.st_size - i - 1;
