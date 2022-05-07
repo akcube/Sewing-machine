@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 3.11...3.23)
 set(BENCHMARK_DOWNLOAD_DEPENDENCIES "on")
 set(CMAKE_BUILD_TYPE "Release")
 
+find_package(TBB)
+
 # Compile googles benchmark lib
 add_subdirectory(benchmark)
 
@@ -23,5 +25,3 @@ add_subdirectory(src)
 
 # Contains all the benchmarking code
 add_subdirectory(runs)
-
-

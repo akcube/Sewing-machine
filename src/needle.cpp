@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
+#include <utils.h>
 
 using namespace std;
 
 #define d(i, j) ((i) * (m + 1) + (j))
-int previous[(int)(2.5e7)] = {0};
-int curr[(int)(2.5e7)] = {0};
 
 int needle(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
+	int *previous = (int*) page_alloc(sizeof(int) * (max(m, n)+1));
+	int *curr = (int*) page_alloc(sizeof(int) * (max(m, n)+1));
 	for (int i = 1; i <= n; i++) {
 		previous[i] = previous[i - 1] + gap;
 	}

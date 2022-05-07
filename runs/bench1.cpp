@@ -2,16 +2,16 @@
 #include <utils.h>
 #include <needle.h>
 
-char sequence1[25000000], sequence2[25000000];
-
 // Define another benchmark
 static void needle_bench(benchmark::State& state) {
-  std::string f1 = "../../../data/medium/1.fasta", f2 = "../../../data/medium/2.fasta";
-  int match = 1, mismatch = -2, gap = 1;
+  std::string f1 = "../../../data/small/test_1/1.fasta", f2 = "../../../data/small/test_1/2.fasta";
+  int match = 1, mismatch = -2, gap = -1;
   for (auto _ : state){
-    int n = readFASTA(sequence1, f1);
-    int m = readFASTA(sequence2, f2);
-    long int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
+    int n, m;
+    char *sequence1 = (char*) readFASTA(f1, n);
+    char *sequence2 = (char*) readFASTA(f2, m);
+    int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
+    std::cout<<ans<<std::endl;
   }
 }
 BENCHMARK(needle_bench);
