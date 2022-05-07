@@ -1,28 +1,38 @@
 #include <bits/stdc++.h>
 #include <utils.h>
+#include <sys/mman.h>
 
 using namespace std;
 
 #define d(i, j) ((i) * (m + 1) + (j))
 
 int needle(char* seq1, int n, char* seq2, int m, int match, int mismatch, int gap) {
-	int *previous = (int*) page_alloc(sizeof(int) * (max(m, n)+1));
-	int *curr = (int*) page_alloc(sizeof(int) * (max(m, n)+1));
+	int *dp = (int*) page_alloc(sizeof(int) * (m+1) * (n+1));
 	for (int i = 1; i <= n; i++) {
-		previous[i] = previous[i - 1] + gap;
+		dp[d(i, 0)] = dp[d(i - 1, 0)] + gap;
 	}
-	int* p = previous;
-	int* c = curr;
+	for (int i = 1; i <= m; i++) {
+		dp[d(0, i)] = dp[d(0, i - 1)] + gap;
+	}
 	for (int i = 1; i <= n; i++) {
-		c[0] = p[0] + gap;
 		for (int j = 1; j <= m; j++) {
+			if (i == 0) {
+				dp[d(i, j)] = dp[d(i, j - 1)] + gap;
+				continue;
+			}
+			if (j == 0) {
+				dp[d(i, j)] = dp[d(i - 1, j)] + gap;
+				continue;
+			}
 			int s = seq1[i - 1] == seq2[j - 1] ? match : mismatch;
-			c[j] = max(p[j - 1] + s, max(p[j], c[j - 1]) + gap);		
+			dp[d(i, j)] = dp[d(i - 1, j - 1)] + s;
+			if (max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap > dp[d(i, j)]) {
+				dp[d(i, j)] = max(dp[d(i - 1, j)], dp[d(i, j - 1)]) + gap;
+			}
+			dp[d(i, j)] = max(dp[d(i, j)], 0);
 		}
-		swap(p, c);
 	}
-	return p[m]; 
+	int ans = dp[d(n, m)];
+	munmap(dp, sizeof(int) * (m+1) * (n+1));
+	return ans;
 }
-
-
-
