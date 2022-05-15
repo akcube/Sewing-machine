@@ -1,0 +1,33 @@
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+needle2d_small_1_bench               167 ms          167 ms            4
+needle2d_small_2_bench              4864 ms         4861 ms            1
+needle1d_small_1_bench              84.2 ms         84.2 ms            8
+needle1d_small_2_bench              2658 ms         2657 ms            1
+needle1d_small_3_bench             22838 ms        22828 ms            1
+needle_diag_small_1_bench           13.7 ms         13.7 ms           51
+needle_diag_small_2_bench            432 ms          432 ms            2
+needle_diag_small_3_bench           4676 ms         4673 ms            1
+needle_diag_small_4_bench          49152 ms        49126 ms            1
+needle_diag_par_small_1_bench       21.1 ms         21.1 ms           31
+needle_diag_par_small_2_bench        319 ms          318 ms            2
+needle_diag_par_small_3_bench       2318 ms         2317 ms            1
+needle_diag_par_small_4_bench      23944 ms        23927 ms            1
+
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+needle2d_small_1_bench               167 ms          167 ms            4
+needle2d_small_2_bench              4996 ms         4993 ms            1
+needle1d_small_1_bench              86.9 ms         86.9 ms            8
+needle1d_small_2_bench              2740 ms         2739 ms            1
+needle1d_small_3_bench             23668 ms        23659 ms            1
+needle_diag_small_1_bench           14.7 ms         14.7 ms           48
+needle_diag_small_2_bench            459 ms          459 ms            2
+needle_diag_small_3_bench           4819 ms         4817 ms            1
+needle_diag_small_4_bench          49874 ms        49848 ms            1
+needle_diag_par_small_1_bench       23.7 ms         23.7 ms           30
+needle_diag_par_small_2_bench        343 ms          343 ms            2
+needle_diag_par_small_3_bench       2513 ms         2512 ms            1
+needle_diag_par_small_4_bench      25883 ms        25816 ms            1

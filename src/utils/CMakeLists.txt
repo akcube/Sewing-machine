@@ -1,5 +1,5 @@
 # Creates the utils lib 
-add_library(util_lib fasta_read.cpp)
+add_library(util_lib utils.cpp)
 
 # We need this directory, and users of our library will need it too
 target_include_directories(util_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -16,11 +16,11 @@ static void needle2d_small_1_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m, f1_off, f2_off;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -33,11 +33,11 @@ static void needle2d_small_2_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -50,11 +50,11 @@ static void needle2d_small_3_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -67,11 +67,11 @@ static void needle2d_small_4_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -95,11 +95,11 @@ static void needle1d_small_1_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_1d(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -112,11 +112,11 @@ static void needle1d_small_2_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_1d(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -129,11 +129,11 @@ static void needle1d_small_3_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_1d(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -146,11 +146,11 @@ static void needle1d_small_4_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_1d(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -174,11 +174,11 @@ static void needle_diag_small_1_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_cache(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -191,11 +191,11 @@ static void needle_diag_small_2_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_cache(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -208,11 +208,11 @@ static void needle_diag_small_3_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_cache(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -225,11 +225,11 @@ static void needle_diag_small_4_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_cache(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -253,11 +253,11 @@ static void needle_diag_par_small_1_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_par(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -270,11 +270,11 @@ static void needle_diag_par_small_2_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_par(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -287,11 +287,11 @@ static void needle_diag_par_small_3_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_par(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -304,11 +304,11 @@ static void needle_diag_par_small_4_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_par(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif
@@ -321,11 +321,11 @@ static void needle_diag_par_medium_bench(benchmark::State& state) {
   size_t f1_size = get_file_size(f1), f2_size = get_file_size(f2);
   for (auto _ : state){
     int n, m;
-    char *sequence1 = (char*) readFASTA(f1, n, f1_size);
-    char *sequence2 = (char*) readFASTA(f2, m, f2_size);
+    char *sequence1 = (char*) slowReadFASTA(f1, n, f1_size);
+    char *sequence2 = (char*) slowReadFASTA(f2, m, f2_size);
     int ans = needle_diag_par(sequence1, n, sequence2, m, match, mismatch, gap);
-    munmap(sequence1 - (f1_size - n), f1_size);
-    munmap(sequence2 - (f2_size - m), f2_size);
+    free(sequence1);
+    free(sequence2);
     #ifdef VERIF
       std::cout<<ans<<std::endl;
     #endif

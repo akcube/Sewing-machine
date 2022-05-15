@@ -2,7 +2,7 @@
 add_subdirectory(utils)
 
 # Creates the library 
-add_library(sewingmachine needle.cpp needle_1d.cpp needle_diag_cache.cpp)
+add_library(sewingmachine needle.cpp needle_1d.cpp needle_diag_cache.cpp needle_diag_par.cpp)
 
 # Link necessary libs
 target_link_libraries(sewingmachine PRIVATE gomp util_lib)
