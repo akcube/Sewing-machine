@@ -1,11 +1,17 @@
 # Needleman-Wunsch Algorithm Optimization
-![Base Case](equation1.png)
-![Recurrence Relation](equation2.png)
+
+
 ## Team
 - A Kishore Kumar
 - Vidit Jain
 
 ## Description 
+
+<img src="equation1.png" alt="Base Case" width="250"/>
+<img src="equation2.png" alt="Recurrence Relation" width="300"/>
+
+
+
 This project involves optimizing a dynamic programming algorithm that cannot be parallelized trivially.
 
 In this project, we worked on reordering the way we process the recurrence relation by iterating over the diagonals instead of a row-wise or column-wise method, and stored only the diagonals needed for computing the future values to save space. Doing so allowed us to make the algorithm parallelizable by removing inter-dependencies. 
