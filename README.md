@@ -1,5 +1,6 @@
 # Needleman-Wunsch Algorithm Optimization
-
+![Base Case](equation1.png)
+![Recurrence Relation](equation2.png)
 ## Team
 - A Kishore Kumar
 - Vidit Jain
